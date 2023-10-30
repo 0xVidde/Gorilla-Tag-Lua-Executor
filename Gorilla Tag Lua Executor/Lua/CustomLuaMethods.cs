@@ -1,12 +1,85 @@
 ﻿using MoonSharp.Interpreter;
+using System.Collections.Generic;
 using System.Net;
 using System.Runtime.Remoting.Messaging;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.XR;
 
 namespace Gorilla_Tag_Lua_Executor.Lua
 {
     public static class CustomLua
     {
+        public class LUA_MouseWrapper
+        {
+            public bool leftButtonPressed = Mouse.current.leftButton.isPressed;
+            public bool rightButtonPressed = Mouse.current.rightButton.isPressed;
+            public Vector2 position = Mouse.current.position.value;
+
+            public static LUA_MouseWrapper Get() { return new LUA_MouseWrapper(); }
+        }
+
+        public class LUA_ControllerInput
+        {
+            public bool isHoldingRightGrip;
+            public bool isHoldingLeftGrip;
+            public bool isHoldingRightTrigger;
+            public bool isHoldingLeftTrigger;
+
+            public float rightGripValue;
+            public float leftGripValue;
+            public float rightTriggerValue;
+            public float leftTriggerValue;
+        }
+
+        public class LUA_InputManager
+        {
+            public static LUA_ControllerInput GetControllerInput()
+            {
+                bool isHoldingRightGrip;
+                bool isHoldingLeftGrip;
+                bool isHoldingRightTrigger;
+                bool isHoldingLeftTrigger;
+
+                float rightGripValue;
+                float leftGripValue;
+                float rightTriggerValue;
+                float leftTriggerValue;
+
+                List<UnityEngine.XR.InputDevice> leftList = new List<UnityEngine.XR.InputDevice>();
+                List<UnityEngine.XR.InputDevice> rightList = new List<UnityEngine.XR.InputDevice>();
+                InputDevices.GetDevicesWithCharacteristics(InputDeviceCharacteristics.HeldInHand | InputDeviceCharacteristics.Left | InputDeviceCharacteristics.Controller, leftList);
+                InputDevices.GetDevicesWithCharacteristics(InputDeviceCharacteristics.HeldInHand | InputDeviceCharacteristics.Right | InputDeviceCharacteristics.Controller, rightList);
+
+                rightList[0].TryGetFeatureValue(UnityEngine.XR.CommonUsages.gripButton, out isHoldingRightGrip);
+                leftList[0].TryGetFeatureValue(UnityEngine.XR.CommonUsages.gripButton, out isHoldingLeftGrip);
+                rightList[0].TryGetFeatureValue(UnityEngine.XR.CommonUsages.triggerButton, out isHoldingRightTrigger);
+                leftList[0].TryGetFeatureValue(UnityEngine.XR.CommonUsages.triggerButton, out isHoldingLeftTrigger);
+
+                rightList[0].TryGetFeatureValue(UnityEngine.XR.CommonUsages.grip, out rightGripValue);
+                leftList[0].TryGetFeatureValue(UnityEngine.XR.CommonUsages.grip, out leftGripValue);
+                rightList[0].TryGetFeatureValue(UnityEngine.XR.CommonUsages.trigger, out rightTriggerValue);
+                leftList[0].TryGetFeatureValue(UnityEngine.XR.CommonUsages.trigger, out leftTriggerValue);
+
+                var input = new LUA_ControllerInput
+                {
+                    isHoldingRightGrip = isHoldingRightGrip,
+                    isHoldingLeftGrip = isHoldingLeftGrip,
+                    isHoldingRightTrigger = isHoldingRightTrigger,
+                    isHoldingLeftTrigger = isHoldingLeftTrigger,
+
+                    rightGripValue = rightGripValue,
+                    leftGripValue = leftGripValue,
+                    rightTriggerValue = rightTriggerValue,
+                    leftTriggerValue = leftTriggerValue,
+                };
+
+                return input;
+            }
+
+            public static LUA_MouseWrapper GetMouse() => LUA_MouseWrapper.Get();
+        }
+
         public class LUA_GameObjectWrapper
         {
             public static GameObject   Find(string n) => GameObject.Find(n);

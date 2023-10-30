@@ -6,6 +6,7 @@ using UnityEngine;
 using static Gorilla_Tag_Lua_Executor.Lua.CustomLua;
 using GorillaNetworking;
 using Photon.Pun;
+using UnityEngine.InputSystem;
 
 namespace Gorilla_Tag_Lua_Executor.Lua
 {
@@ -54,6 +55,10 @@ namespace Gorilla_Tag_Lua_Executor.Lua
             UserData.RegisterType<LUA_QuaternionWrapper>();
             UserData.RegisterType<LUA_GameObjectWrapper>();
 
+            UserData.RegisterType<LUA_ControllerInput>();
+            UserData.RegisterType<LUA_InputManager>();
+            UserData.RegisterType<LUA_MouseWrapper>();
+
             // Structs
             UserData.RegisterType<Mathf>();
             UserData.RegisterType<Vector2>();
@@ -70,10 +75,13 @@ namespace Gorilla_Tag_Lua_Executor.Lua
 
             // Classes
             mainScript.Globals["GameObject"] = UserData.CreateStatic<LUA_GameObjectWrapper>();
+            mainScript.Globals["InputManager"] = UserData.CreateStatic<LUA_InputManager>();
             mainScript.Globals["Vector2"] =    UserData.CreateStatic<LUA_Vector2Wrapper>();
             mainScript.Globals["Vector3"] =    UserData.CreateStatic<LUA_Vector3Wrapper>();
             mainScript.Globals["Vector4"] =    UserData.CreateStatic<LUA_Vector4Wrapper>();
             mainScript.Globals["Quaternion"] = UserData.CreateStatic<LUA_QuaternionWrapper>();
+
+            mainScript.Globals["InputManager"] = UserData.CreateStatic<LUA_InputManager>();
 
             // Enums
             mainScript.Globals["PrimitiveType"] = UserData.CreateStatic<PrimitiveType>();
@@ -112,6 +120,8 @@ namespace Gorilla_Tag_Lua_Executor.Lua
             try
             {
                 DynValue res = mainScript.DoString(code);
+
+                mainScript.Options.UseLuaErrorLocations = true;
 
                 return res.Boolean;
             }
