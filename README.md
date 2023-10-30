@@ -24,29 +24,30 @@ Download the .dll and place it inside of your plugins folder.
 
 
 ```C#
-Mathf:... => Unity Mathf namespace wrapper
-
 GmaeObject:Find(string) => GameObject.Find Wrapper
 GameObject:CreatePrimitive(PrimitiveType) => GameObject.CreatePrimitive Wrapper
-Create(string) => new GameObject Wrapper
-Destroy(GameObject) => GameObject.Destroy Wrapper
+GameObject:New(string) => new GameObject() Wrapper
+GameObject:Destroy(GameObject) => GameObject.Destroy Wrapper
 
 loadstring(string) => Gets raw code from specified URL and runs it
 print(string) => Prints specified message to Unity console.
+printerr(string) => Prints specified message to Unity console as an error.
 
 
 -- Game Instances --
-_GorillaBattleManager  => GorillaBattleManager.instance
-_GorillaPlayer         => GorillaLocomotion.Player.instance
-_GorillaDayNight       => GorillaDayNight.instance
-_GorillaComputer       => GorillaParent.instance
-_BetterDayNightManager => BetterDayNightManager.instance
-_GorillaParent         => GorillaParent.instance
+_GorillaBattleManager    => GorillaBattleManager.instance
+_GorillaPlayer           => GorillaLocomotion.Player.instance
+_GorillaDayNight         => GorillaDayNight.instance
+_GorillaComputer         => GorillaParent.instance
+_BetterDayNightManager   => BetterDayNightManager.instance
+_GorillaParent           => GorillaParent.instance
+_PhotonNetworkController => PhotonNetworkController.Instance
 
 ```
 Supports Following Unity Classes / Namespaces / Enums / Structs
 ```C#
 GameObject
+UnityEngine.Object
 Transform
 Rigidbody
 BoxCollider
@@ -66,6 +67,12 @@ GorillaComputer
 GorillaParent
 BetterDayNightManager
 PhotonNetworkController
+
+PhotonEvent
+PhotonHandler
+PhotonNetworkController
+PhotonTag
+PhotonView
 
 Mathf
 Vector2
