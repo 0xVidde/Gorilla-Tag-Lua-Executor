@@ -7,18 +7,14 @@ namespace Gorilla_Tag_Lua_Executor.Lua
 {
     public static class CustomLua
     {
-        [MoonSharpUserData]
-        public class LUA_Game
-        {
-            public GorillaLocomotion.Player GetLocalGorillaPlayer()
-            {
-                return GorillaLocomotion.Player.Instance;
-            }
-        }
-
         public static GameObject LUA_GameObjectCreate(string n)
         {
             return new GameObject(n);
+        }
+
+        public static GameObject LUA_GameObjectCreatePrimitive(PrimitiveType p)
+        {
+            return GameObject.CreatePrimitive(p);
         }
 
         public static bool LUA_GameObjectDestroy(GameObject n)

@@ -31,6 +31,7 @@ namespace Gorilla_Tag_Lua_Executor.Lua
             UserData.RegisterType<MeshCollider>();
             UserData.RegisterType<MeshRenderer>();
             UserData.RegisterType<Shader>();
+            UserData.RegisterType<Material>();
             UserData.RegisterType<SkinnedMeshRenderer>();
              
             UserData.RegisterType<GorillaLocomotion.Player>();
@@ -46,6 +47,11 @@ namespace Gorilla_Tag_Lua_Executor.Lua
             UserData.RegisterType<Vector2>();
             UserData.RegisterType<Vector3>();
             UserData.RegisterType<Vector4>();
+            UserData.RegisterType<Quaternion>();
+
+            // Enums
+            UserData.RegisterType<PrimitiveType>();
+            mainScript.Globals["PrimitiveType"] = UserData.CreateStatic<PrimitiveType>();
 
             mainScript.Globals["print"] = (Func<object, bool>)CustomLua.LUA_print;
             mainScript.Globals["loadstring"] = (Func<string, bool>)CustomLua.LUA_loadstring;
@@ -57,21 +63,20 @@ namespace Gorilla_Tag_Lua_Executor.Lua
             mainScript.Globals["_GorillaParent"] = GorillaParent.instance;
             mainScript.Globals["_BetterDayNightManager"] = BetterDayNightManager.instance;
 
-            mainScript.Globals["GameObject"] = new GameObject("GameObject LUA Wrapper");
+            mainScript.Globals["GameObject"] = UserData.CreateStatic<GameObject>();
             mainScript.Globals["Create"] = (Func<string, GameObject>)CustomLua.LUA_GameObjectCreate;
             mainScript.Globals["Destroy"] = (Func<GameObject, bool>)CustomLua.LUA_GameObjectDestroy;
-            mainScript.Globals["Find"] = (Func<string, GameObject>)CustomLua.LUA_GameObjectFind;
 
             mainScript.Globals["Mathf"] = new Mathf();
             mainScript.Globals["Vector2"] = new Vector2();
             mainScript.Globals["Vector3"] = new Vector3();
             mainScript.Globals["Vector4"] = new Vector4();
+            mainScript.Globals["Quaternion"] = new Quaternion();
 
             foreach (Type item in UserData.GetRegisteredTypes())
             {
                 Debug.Log("Loaded Type Into LUA Engine: " + item.Name);
             }
-
             foreach (DynValue item in mainScript.Globals.Keys)
             {
                 Debug.Log("Loaded Global Into LUA Engine: " + item.ToString());
