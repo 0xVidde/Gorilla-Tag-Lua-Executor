@@ -11,7 +11,6 @@ Ormbunke is a LUA interface inside of Gorilla Tag. It supports a lot of things, 
 ## Installation
 Download the .dll and place it inside of your plugins folder.
 ## Roadmap
-- Make Interface be able to access Networking related classes.
 
 - Make menu look better.
 
