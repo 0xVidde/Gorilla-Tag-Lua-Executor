@@ -10,7 +10,7 @@ namespace Gorilla_Tag_Lua_Executor
     {
         private const string modGUID = "GT.Lua.Exec";
         private const string modName = "Ormbunke Executor";
-        private const string modVersion = "0.0.1";
+        private const string modVersion = "0.0.2";
 
         public void Awake()
         {
@@ -37,7 +37,16 @@ namespace Gorilla_Tag_Lua_Executor
     {
         private Rect windowRect = new Rect(20, 20, 500, 450);
 
-        public string code = @"";
+        public string code = @"-- https://github.com/0xVidde/Gorilla-Tag-Lua-Executor
+-- By Vidde
+
+-- Example
+local tempObj = GameObject:New('Example Object')
+local dist = Vector3:Distance(tempObj.transform.position, _GorillaPlayer.transform.position)
+
+print(dist)
+
+GameObject:Destroy(tempObj, 1)";
 
         public void Start()
         {

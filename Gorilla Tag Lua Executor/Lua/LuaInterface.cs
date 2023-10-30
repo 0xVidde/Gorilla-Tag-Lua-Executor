@@ -42,9 +42,7 @@ namespace Gorilla_Tag_Lua_Executor.Lua
             UserData.RegisterType<GorillaComputer>();
             UserData.RegisterType<GorillaParent>();
             UserData.RegisterType<BetterDayNightManager>();
-            UserData.RegisterType<PhotonNetworkController>();
 
-            UserData.RegisterType<PhotonEvent>();
             UserData.RegisterType<PhotonHandler>();
             UserData.RegisterType<PhotonNetworkController>();
             UserData.RegisterType<PhotonTag>();
