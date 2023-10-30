@@ -1,0 +1,634 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{133F5C58-A54C-4605-A23A-784753DA625D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Gorilla_Tag_Lua_Executor</RootNamespace>
+    <AssemblyName>Gorilla Tag Lua Executor</AssemblyName>
+    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="0Harmony">
+      <HintPath>D:\Steam\steamapps\common\Gorilla Tag\BepInEx\core\0Harmony.dll</HintPath>
+    </Reference>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>D:\Steam\steamapps\common\Gorilla Tag\Gorilla Tag_Data\Managed\Assembly-CSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="BepInEx">
+      <HintPath>D:\Steam\steamapps\common\Gorilla Tag\BepInEx\core\BepInEx.dll</HintPath>
+    </Reference>
+    <Reference Include="BepInEx.Harmony">
+      <HintPath>D:\Steam\steamapps\common\Gorilla Tag\BepInEx\core\BepInEx.Harmony.dll</HintPath>
+    </Reference>
+    <Reference Include="BepInEx.Preloader">
+      <HintPath>D:\Steam\steamapps\common\Gorilla Tag\BepInEx\core\BepInEx.Preloader.dll</HintPath>
+    </Reference>
+    <Reference Include="Photon3Unity3D, Version=4.1.6.11, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\Steam\steamapps\common\Gorilla Tag\Gorilla Tag_Data\Managed\Photon3Unity3D.dll</HintPath>
+    </Reference>
+    <Reference Include="PhotonChat">
+      <HintPath>D:\Steam\steamapps\common\Gorilla Tag\Gorilla Tag_Data\Managed\PhotonChat.dll</HintPath>
+    </Reference>
+    <Reference Include="PhotonRealtime, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\Steam\steamapps\common\Gorilla Tag\Gorilla Tag_Data\Managed\PhotonRealtime.dll</HintPath>
+    </Reference>
+    <Reference Include="PhotonUnityNetworking, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\Steam\steamapps\common\Gorilla Tag\Gorilla Tag_Data\Managed\PhotonUnityNetworking.dll</HintPath>
+    </Reference>
+    <Reference Include="PhotonUnityNetworking.Utilities">
+      <HintPath>D:\Steam\steamapps\common\Gorilla Tag\Gorilla Tag_Data\Managed\PhotonUnityNetworking.Utilities.dll</HintPath>
+    </Reference>
+    <Reference Include="PhotonVoice, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\Steam\steamapps\common\Gorilla Tag\Gorilla Tag_Data\Managed\PhotonVoice.dll</HintPath>
+    </Reference>
+    <Reference Include="PhotonVoice.API, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\Steam\steamapps\common\Gorilla Tag\Gorilla Tag_Data\Managed\PhotonVoice.API.dll</HintPath>
+    </Reference>
+    <Reference Include="PhotonVoice.PUN, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\Steam\steamapps\common\Gorilla Tag\Gorilla Tag_Data\Managed\PhotonVoice.PUN.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Unity.AI.Navigation">
+      <HintPath>D:\Steam\steamapps\common\Gorilla Tag\Gorilla Tag_Data\Managed\Unity.AI.Navigation.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Animation.Rigging, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\Steam\steamapps\common\Gorilla Tag\Gorilla Tag_Data\Managed\Unity.Animation.Rigging.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Animation.Rigging.DocCodeExamples">
+      <HintPath>D:\Steam\steamapps\common\Gorilla Tag\Gorilla Tag_Data\Managed\Unity.Animation.Rigging.DocCodeExamples.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Burst, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\Steam\steamapps\common\Gorilla Tag\Gorilla Tag_Data\Managed\Unity.Burst.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Burst.Unsafe, Version=4.0.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\Steam\steamapps\common\Gorilla Tag\Gorilla Tag_Data\Managed\Unity.Burst.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Formats.Fbx.Runtime">
+      <HintPath>D:\Steam\steamapps\common\Gorilla Tag\Gorilla Tag_Data\Managed\Unity.Formats.Fbx.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.InputSystem, Version=1.6.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\Steam\steamapps\common\Gorilla Tag\Gorilla Tag_Data\Managed\Unity.InputSystem.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.InputSystem.ForUI">
+      <HintPath>D:\Steam\steamapps\common\Gorilla Tag\Gorilla Tag_Data\Managed\Unity.InputSystem.ForUI.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Mathematics, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\Steam\steamapps\common\Gorilla Tag\Gorilla Tag_Data\Managed\Unity.Mathematics.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.RenderPipeline.Universal.ShaderLibrary, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\Steam\steamapps\common\Gorilla Tag\Gorilla Tag_Data\Managed\Unity.RenderPipeline.Universal.ShaderLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.RenderPipelines.Core.Runtime, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\Steam\steamapps\common\Gorilla Tag\Gorilla Tag_Data\Managed\Unity.RenderPipelines.Core.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.RenderPipelines.Core.ShaderLibrary">
+      <HintPath>D:\Steam\steamapps\common\Gorilla Tag\Gorilla Tag_Data\Managed\Unity.RenderPipelines.Core.ShaderLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary">
+      <HintPath>D:\Steam\steamapps\common\Gorilla Tag\Gorilla Tag_Data\Managed\Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\Steam\steamapps\common\Gorilla Tag\Gorilla Tag_Data\Managed\Unity.RenderPipelines.Universal.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.RenderPipelines.Universal.Shaders">
+      <HintPath>D:\Steam\steamapps\common\Gorilla Tag\Gorilla Tag_Data\Managed\Unity.RenderPipelines.Universal.Shaders.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.TextMeshPro, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Desktop\Random Shit\2D Physics Simulation\2D Physics Simulation_Data\Managed\Unity.TextMeshPro.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>D:\Steam\steamapps\common\Gorilla Tag\Gorilla Tag_Data\Managed\UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.AccessibilityModule">
+      <HintPath>D:\Steam\steamapps\common\Gorilla Tag\Gorilla Tag_Data\Managed\UnityEngine.AccessibilityModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.AIModule">
+      <HintPath>D:\Steam\steamapps\common\Gorilla Tag\Gorilla Tag_Data\Managed\UnityEngine.AIModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.AndroidJNIModule">
+      <HintPath>D:\Steam\steamapps\common\Gorilla Tag\Gorilla Tag_Data\Managed\UnityEngine.AndroidJNIModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.AnimationModule">
+      <HintPath>D:\Steam\steamapps\common\Gorilla Tag\Gorilla Tag_Data\Managed\UnityEngine.AnimationModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ARModule">
+      <HintPath>D:\Steam\steamapps\common\Gorilla Tag\Gorilla Tag_Data\Managed\UnityEngine.ARModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.AssetBundleModule">
+      <HintPath>D:\Steam\steamapps\common\Gorilla Tag\Gorilla Tag_Data\Managed\UnityEngine.AssetBundleModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.AudioModule">
+      <HintPath>D:\Steam\steamapps\common\Gorilla Tag\Gorilla Tag_Data\Managed\UnityEngine.AudioModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ClothModule">
+      <HintPath>D:\Steam\steamapps\common\Gorilla Tag\Gorilla Tag_Data\Managed\UnityEngine.ClothModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ClusterInputModule">
+      <HintPath>D:\Steam\steamapps\common\Gorilla Tag\Gorilla Tag_Data\Managed\UnityEngine.ClusterInputModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ClusterRendererModule">
+      <HintPath>D:\Steam\steamapps\common\Gorilla Tag\Gorilla Tag_Data\Managed\UnityEngine.ClusterRendererModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ContentLoadModule">
+      <HintPath>D:\Steam\steamapps\common\Gorilla Tag\Gorilla Tag_Data\Managed\UnityEngine.ContentLoadModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>D:\Steam\steamapps\common\Gorilla Tag\Gorilla Tag_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.CrashReportingModule">
+      <HintPath>D:\Steam\steamapps\common\Gorilla Tag\Gorilla Tag_Data\Managed\UnityEngine.CrashReportingModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.DirectorModule">
+      <HintPath>D:\Steam\steamapps\common\Gorilla Tag\Gorilla Tag_Data\Managed\UnityEngine.DirectorModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.DSPGraphModule">
+      <HintPath>D:\Steam\steamapps\common\Gorilla Tag\Gorilla Tag_Data\Managed\UnityEngine.DSPGraphModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.GameCenterModule">
+      <HintPath>D:\Steam\steamapps\common\Gorilla Tag\Gorilla Tag_Data\Managed\UnityEngine.GameCenterModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.GIModule">
+      <HintPath>D:\Steam\steamapps\common\Gorilla Tag\Gorilla Tag_Data\Managed\UnityEngine.GIModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.GridModule">
+      <HintPath>D:\Steam\steamapps\common\Gorilla Tag\Gorilla Tag_Data\Managed\UnityEngine.GridModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.HotReloadModule">
+      <HintPath>D:\Steam\steamapps\common\Gorilla Tag\Gorilla Tag_Data\Managed\UnityEngine.HotReloadModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ImageConversionModule">
+      <HintPath>D:\Steam\steamapps\common\Gorilla Tag\Gorilla Tag_Data\Managed\UnityEngine.ImageConversionModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.IMGUIModule">
+      <HintPath>D:\Steam\steamapps\common\Gorilla Tag\Gorilla Tag_Data\Managed\UnityEngine.IMGUIModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.InputLegacyModule">
+      <HintPath>D:\Steam\steamapps\common\Gorilla Tag\Gorilla Tag_Data\Managed\UnityEngine.InputLegacyModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.InputModule">
+      <HintPath>D:\Steam\steamapps\common\Gorilla Tag\Gorilla Tag_Data\Managed\UnityEngine.InputModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.JSONSerializeModule">
+      <HintPath>D:\Steam\steamapps\common\Gorilla Tag\Gorilla Tag_Data\Managed\UnityEngine.JSONSerializeModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.LocalizationModule">
+      <HintPath>D:\Steam\steamapps\common\Gorilla Tag\Gorilla Tag_Data\Managed\UnityEngine.LocalizationModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.NVIDIAModule">
+      <HintPath>D:\Steam\steamapps\common\Gorilla Tag\Gorilla Tag_Data\Managed\UnityEngine.NVIDIAModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ParticleSystemModule">
+      <HintPath>D:\Steam\steamapps\common\Gorilla Tag\Gorilla Tag_Data\Managed\UnityEngine.ParticleSystemModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.PerformanceReportingModule">
+      <HintPath>D:\Steam\steamapps\common\Gorilla Tag\Gorilla Tag_Data\Managed\UnityEngine.PerformanceReportingModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.Physics2DModule">
+      <HintPath>D:\Steam\steamapps\common\Gorilla Tag\Gorilla Tag_Data\Managed\UnityEngine.Physics2DModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.PhysicsModule">
+      <HintPath>D:\Steam\steamapps\common\Gorilla Tag\Gorilla Tag_Data\Managed\UnityEngine.PhysicsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ProfilerModule">
+      <HintPath>D:\Steam\steamapps\common\Gorilla Tag\Gorilla Tag_Data\Managed\UnityEngine.ProfilerModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.PropertiesModule">
+      <HintPath>D:\Steam\steamapps\common\Gorilla Tag\Gorilla Tag_Data\Managed\UnityEngine.PropertiesModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule">
+      <HintPath>D:\Steam\steamapps\common\Gorilla Tag\Gorilla Tag_Data\Managed\UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ScreenCaptureModule">
+      <HintPath>D:\Steam\steamapps\common\Gorilla Tag\Gorilla Tag_Data\Managed\UnityEngine.ScreenCaptureModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.SharedInternalsModule">
+      <HintPath>D:\Steam\steamapps\common\Gorilla Tag\Gorilla Tag_Data\Managed\UnityEngine.SharedInternalsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.SpatialTracking">
+      <HintPath>D:\Steam\steamapps\common\Gorilla Tag\Gorilla Tag_Data\Managed\UnityEngine.SpatialTracking.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.SpriteMaskModule">
+      <HintPath>D:\Steam\steamapps\common\Gorilla Tag\Gorilla Tag_Data\Managed\UnityEngine.SpriteMaskModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.SpriteShapeModule">
+      <HintPath>D:\Steam\steamapps\common\Gorilla Tag\Gorilla Tag_Data\Managed\UnityEngine.SpriteShapeModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.StreamingModule">
+      <HintPath>D:\Steam\steamapps\common\Gorilla Tag\Gorilla Tag_Data\Managed\UnityEngine.StreamingModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.SubstanceModule">
+      <HintPath>D:\Steam\steamapps\common\Gorilla Tag\Gorilla Tag_Data\Managed\UnityEngine.SubstanceModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.SubsystemsModule">
+      <HintPath>D:\Steam\steamapps\common\Gorilla Tag\Gorilla Tag_Data\Managed\UnityEngine.SubsystemsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TerrainModule">
+      <HintPath>D:\Steam\steamapps\common\Gorilla Tag\Gorilla Tag_Data\Managed\UnityEngine.TerrainModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TerrainPhysicsModule">
+      <HintPath>D:\Steam\steamapps\common\Gorilla Tag\Gorilla Tag_Data\Managed\UnityEngine.TerrainPhysicsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TextCoreFontEngineModule">
+      <HintPath>D:\Steam\steamapps\common\Gorilla Tag\Gorilla Tag_Data\Managed\UnityEngine.TextCoreFontEngineModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TextCoreTextEngineModule">
+      <HintPath>D:\Steam\steamapps\common\Gorilla Tag\Gorilla Tag_Data\Managed\UnityEngine.TextCoreTextEngineModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TextRenderingModule">
+      <HintPath>D:\Steam\steamapps\common\Gorilla Tag\Gorilla Tag_Data\Managed\UnityEngine.TextRenderingModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TilemapModule">
+      <HintPath>D:\Steam\steamapps\common\Gorilla Tag\Gorilla Tag_Data\Managed\UnityEngine.TilemapModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TLSModule">
+      <HintPath>D:\Steam\steamapps\common\Gorilla Tag\Gorilla Tag_Data\Managed\UnityEngine.TLSModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>D:\Steam\steamapps\common\Gorilla Tag\Gorilla Tag_Data\Managed\UnityEngine.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UIElementsModule">
+      <HintPath>D:\Steam\steamapps\common\Gorilla Tag\Gorilla Tag_Data\Managed\UnityEngine.UIElementsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UIModule">
+      <HintPath>D:\Steam\steamapps\common\Gorilla Tag\Gorilla Tag_Data\Managed\UnityEngine.UIModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UmbraModule">
+      <HintPath>D:\Steam\steamapps\common\Gorilla Tag\Gorilla Tag_Data\Managed\UnityEngine.UmbraModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityAnalyticsCommonModule">
+      <HintPath>D:\Steam\steamapps\common\Gorilla Tag\Gorilla Tag_Data\Managed\UnityEngine.UnityAnalyticsCommonModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityAnalyticsModule">
+      <HintPath>D:\Steam\steamapps\common\Gorilla Tag\Gorilla Tag_Data\Managed\UnityEngine.UnityAnalyticsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityConnectModule">
+      <HintPath>D:\Steam\steamapps\common\Gorilla Tag\Gorilla Tag_Data\Managed\UnityEngine.UnityConnectModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityCurlModule">
+      <HintPath>D:\Steam\steamapps\common\Gorilla Tag\Gorilla Tag_Data\Managed\UnityEngine.UnityCurlModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityTestProtocolModule">
+      <HintPath>D:\Steam\steamapps\common\Gorilla Tag\Gorilla Tag_Data\Managed\UnityEngine.UnityTestProtocolModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestAssetBundleModule">
+      <HintPath>D:\Steam\steamapps\common\Gorilla Tag\Gorilla Tag_Data\Managed\UnityEngine.UnityWebRequestAssetBundleModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestAudioModule">
+      <HintPath>D:\Steam\steamapps\common\Gorilla Tag\Gorilla Tag_Data\Managed\UnityEngine.UnityWebRequestAudioModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestModule">
+      <HintPath>D:\Steam\steamapps\common\Gorilla Tag\Gorilla Tag_Data\Managed\UnityEngine.UnityWebRequestModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestTextureModule">
+      <HintPath>D:\Steam\steamapps\common\Gorilla Tag\Gorilla Tag_Data\Managed\UnityEngine.UnityWebRequestTextureModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestWWWModule">
+      <HintPath>D:\Steam\steamapps\common\Gorilla Tag\Gorilla Tag_Data\Managed\UnityEngine.UnityWebRequestWWWModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.VehiclesModule">
+      <HintPath>D:\Steam\steamapps\common\Gorilla Tag\Gorilla Tag_Data\Managed\UnityEngine.VehiclesModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.VFXModule">
+      <HintPath>D:\Steam\steamapps\common\Gorilla Tag\Gorilla Tag_Data\Managed\UnityEngine.VFXModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.VideoModule">
+      <HintPath>D:\Steam\steamapps\common\Gorilla Tag\Gorilla Tag_Data\Managed\UnityEngine.VideoModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.VirtualTexturingModule">
+      <HintPath>D:\Steam\steamapps\common\Gorilla Tag\Gorilla Tag_Data\Managed\UnityEngine.VirtualTexturingModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.VRModule">
+      <HintPath>D:\Steam\steamapps\common\Gorilla Tag\Gorilla Tag_Data\Managed\UnityEngine.VRModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.WindModule">
+      <HintPath>D:\Steam\steamapps\common\Gorilla Tag\Gorilla Tag_Data\Managed\UnityEngine.WindModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.XR.LegacyInputHelpers">
+      <HintPath>D:\Steam\steamapps\common\Gorilla Tag\Gorilla Tag_Data\Managed\UnityEngine.XR.LegacyInputHelpers.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.XRModule">
+      <HintPath>D:\Steam\steamapps\common\Gorilla Tag\Gorilla Tag_Data\Managed\UnityEngine.XRModule.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Lua\CustomLuaMethods.cs" />
+    <Compile Include="Lua\LuaInterface.cs" />
+    <Compile Include="Main.cs" />
+    <Compile Include="MoonSharp\AsyncExtensions.cs" />
+    <Compile Include="MoonSharp\CodeAnalysis\AstNode.cs" />
+    <Compile Include="MoonSharp\Compatibility\Attributes.cs" />
+    <Compile Include="MoonSharp\Compatibility\Framework.cs" />
+    <Compile Include="MoonSharp\Compatibility\Frameworks\Base\FrameworkBase.cs" />
+    <Compile Include="MoonSharp\Compatibility\Frameworks\Base\FrameworkClrBase.cs" />
+    <Compile Include="MoonSharp\Compatibility\Frameworks\Base\FrameworkReflectionBase.cs" />
+    <Compile Include="MoonSharp\Compatibility\Frameworks\FrameworkCLR.cs" />
+    <Compile Include="MoonSharp\Compatibility\Frameworks\FrameworkCore.cs" />
+    <Compile Include="MoonSharp\Compatibility\Frameworks\FrameworkPCL.cs" />
+    <Compile Include="MoonSharp\Compatibility\Frameworks\FrameworkWin8.cs" />
+    <Compile Include="MoonSharp\Compatibility\Stopwatch.cs" />
+    <Compile Include="MoonSharp\CoreLib\BasicModule.cs" />
+    <Compile Include="MoonSharp\CoreLib\Bit32Module.cs" />
+    <Compile Include="MoonSharp\CoreLib\CoroutineModule.cs" />
+    <Compile Include="MoonSharp\CoreLib\DebugModule.cs" />
+    <Compile Include="MoonSharp\CoreLib\DynamicModule.cs" />
+    <Compile Include="MoonSharp\CoreLib\ErrorHandlingModule.cs" />
+    <Compile Include="MoonSharp\CoreLib\IoModule.cs" />
+    <Compile Include="MoonSharp\CoreLib\IO\BinaryEncoding.cs" />
+    <Compile Include="MoonSharp\CoreLib\IO\FileUserData.cs" />
+    <Compile Include="MoonSharp\CoreLib\IO\FileUserDataBase.cs" />
+    <Compile Include="MoonSharp\CoreLib\IO\StandardIOFileUserDataBase.cs" />
+    <Compile Include="MoonSharp\CoreLib\IO\StreamFileUserDataBase.cs" />
+    <Compile Include="MoonSharp\CoreLib\JsonModule.cs" />
+    <Compile Include="MoonSharp\CoreLib\LoadModule.cs" />
+    <Compile Include="MoonSharp\CoreLib\MathModule.cs" />
+    <Compile Include="MoonSharp\CoreLib\MetaTableModule.cs" />
+    <Compile Include="MoonSharp\CoreLib\OsSystemModule.cs" />
+    <Compile Include="MoonSharp\CoreLib\OsTimeModule.cs" />
+    <Compile Include="MoonSharp\CoreLib\StringLib\KopiLua_StrLib.cs" />
+    <Compile Include="MoonSharp\CoreLib\StringLib\StringRange.cs" />
+    <Compile Include="MoonSharp\CoreLib\StringModule.cs" />
+    <Compile Include="MoonSharp\CoreLib\TableIteratorsModule.cs" />
+    <Compile Include="MoonSharp\CoreLib\TableModule.cs" />
+    <Compile Include="MoonSharp\DataStructs\Extension_Methods.cs" />
+    <Compile Include="MoonSharp\DataStructs\FastStack.cs" />
+    <Compile Include="MoonSharp\DataStructs\FastStackDynamic.cs" />
+    <Compile Include="MoonSharp\DataStructs\LinkedListIndex.cs" />
+    <Compile Include="MoonSharp\DataStructs\MultiDictionary.cs" />
+    <Compile Include="MoonSharp\DataStructs\ReferenceEqualityComparer.cs" />
+    <Compile Include="MoonSharp\DataStructs\Slice.cs" />
+    <Compile Include="MoonSharp\DataTypes\CallbackArguments.cs" />
+    <Compile Include="MoonSharp\DataTypes\CallbackFunction.cs" />
+    <Compile Include="MoonSharp\DataTypes\Closure.cs" />
+    <Compile Include="MoonSharp\DataTypes\Coroutine.cs" />
+    <Compile Include="MoonSharp\DataTypes\CoroutineState.cs" />
+    <Compile Include="MoonSharp\DataTypes\DataType.cs" />
+    <Compile Include="MoonSharp\DataTypes\DynValue.cs" />
+    <Compile Include="MoonSharp\DataTypes\IScriptPrivateResource.cs" />
+    <Compile Include="MoonSharp\DataTypes\RefIdObject.cs" />
+    <Compile Include="MoonSharp\DataTypes\ScriptFunctionDelegate.cs" />
+    <Compile Include="MoonSharp\DataTypes\SymbolRef.cs" />
+    <Compile Include="MoonSharp\DataTypes\SymbolRefType.cs" />
+    <Compile Include="MoonSharp\DataTypes\Table.cs" />
+    <Compile Include="MoonSharp\DataTypes\TablePair.cs" />
+    <Compile Include="MoonSharp\DataTypes\TailCallData.cs" />
+    <Compile Include="MoonSharp\DataTypes\TypeValidationFlags.cs" />
+    <Compile Include="MoonSharp\DataTypes\UserData.cs" />
+    <Compile Include="MoonSharp\DataTypes\WellKnownSymbols.cs" />
+    <Compile Include="MoonSharp\DataTypes\YieldRequest.cs" />
+    <Compile Include="MoonSharp\Debugging\DebuggerAction.cs" />
+    <Compile Include="MoonSharp\Debugging\DebuggerCaps.cs" />
+    <Compile Include="MoonSharp\Debugging\DebugService.cs" />
+    <Compile Include="MoonSharp\Debugging\IDebugger.cs" />
+    <Compile Include="MoonSharp\Debugging\SourceCode.cs" />
+    <Compile Include="MoonSharp\Debugging\SourceRef.cs" />
+    <Compile Include="MoonSharp\Debugging\WatchItem.cs" />
+    <Compile Include="MoonSharp\Debugging\WatchType.cs" />
+    <Compile Include="MoonSharp\Diagnostics\PerformanceCounter.cs" />
+    <Compile Include="MoonSharp\Diagnostics\PerformanceCounters\DummyPerformanceStopwatch.cs" />
+    <Compile Include="MoonSharp\Diagnostics\PerformanceCounters\GlobalPerformanceStopwatch.cs" />
+    <Compile Include="MoonSharp\Diagnostics\PerformanceCounters\IPerformanceStopwatch.cs" />
+    <Compile Include="MoonSharp\Diagnostics\PerformanceCounters\PerformanceStopwatch.cs" />
+    <Compile Include="MoonSharp\Diagnostics\PerformanceCounterType.cs" />
+    <Compile Include="MoonSharp\Diagnostics\PerformanceResult.cs" />
+    <Compile Include="MoonSharp\Diagnostics\PerformanceStatistics.cs" />
+    <Compile Include="MoonSharp\Errors\DynamicExpressionException.cs" />
+    <Compile Include="MoonSharp\Errors\InternalErrorException.cs" />
+    <Compile Include="MoonSharp\Errors\InterpreterException.cs" />
+    <Compile Include="MoonSharp\Errors\ScriptRuntimeException.cs" />
+    <Compile Include="MoonSharp\Errors\SyntaxErrorException.cs" />
+    <Compile Include="MoonSharp\Execution\DynamicExpression.cs" />
+    <Compile Include="MoonSharp\Execution\InstructionFieldUsage.cs" />
+    <Compile Include="MoonSharp\Execution\Scopes\BuildTimeScope.cs" />
+    <Compile Include="MoonSharp\Execution\Scopes\BuildTimeScopeBlock.cs" />
+    <Compile Include="MoonSharp\Execution\Scopes\BuildTimeScopeFrame.cs" />
+    <Compile Include="MoonSharp\Execution\Scopes\ClosureContext.cs" />
+    <Compile Include="MoonSharp\Execution\Scopes\IClosureBuilder.cs" />
+    <Compile Include="MoonSharp\Execution\Scopes\LoopTracker.cs" />
+    <Compile Include="MoonSharp\Execution\Scopes\RuntimeScopeBlock.cs" />
+    <Compile Include="MoonSharp\Execution\Scopes\RuntimeScopeFrame.cs" />
+    <Compile Include="MoonSharp\Execution\ScriptExecutionContext.cs" />
+    <Compile Include="MoonSharp\Execution\ScriptLoadingContext.cs" />
+    <Compile Include="MoonSharp\Execution\VM\ByteCode.cs" />
+    <Compile Include="MoonSharp\Execution\VM\CallStackItem.cs" />
+    <Compile Include="MoonSharp\Execution\VM\CallStackItemFlags.cs" />
+    <Compile Include="MoonSharp\Execution\VM\ExecutionState.cs" />
+    <Compile Include="MoonSharp\Execution\VM\Instruction.cs" />
+    <Compile Include="MoonSharp\Execution\VM\OpCode.cs" />
+    <Compile Include="MoonSharp\Execution\VM\OpCodeMetadataType.cs" />
+    <Compile Include="MoonSharp\Execution\VM\Processor\DebugContext.cs" />
+    <Compile Include="MoonSharp\Execution\VM\Processor\Processor.cs" />
+    <Compile Include="MoonSharp\Execution\VM\Processor\Processor_BinaryDump.cs" />
+    <Compile Include="MoonSharp\Execution\VM\Processor\Processor_Coroutines.cs" />
+    <Compile Include="MoonSharp\Execution\VM\Processor\Processor_Debugger.cs" />
+    <Compile Include="MoonSharp\Execution\VM\Processor\Processor_Errors.cs" />
+    <Compile Include="MoonSharp\Execution\VM\Processor\Processor_IExecutionContext.cs" />
+    <Compile Include="MoonSharp\Execution\VM\Processor\Processor_InstructionLoop.cs" />
+    <Compile Include="MoonSharp\Execution\VM\Processor\Processor_Scope.cs" />
+    <Compile Include="MoonSharp\Execution\VM\Processor\Processor_UtilityFunctions.cs" />
+    <Compile Include="MoonSharp\Interop\Attributes\MoonSharpHiddenAttribute.cs" />
+    <Compile Include="MoonSharp\Interop\Attributes\MoonSharpHideMemberAttribute.cs" />
+    <Compile Include="MoonSharp\Interop\Attributes\MoonSharpPropertyAttribute.cs" />
+    <Compile Include="MoonSharp\Interop\Attributes\MoonSharpUserDataAttribute.cs" />
+    <Compile Include="MoonSharp\Interop\Attributes\MoonSharpUserDataMetamethodAttribute.cs" />
+    <Compile Include="MoonSharp\Interop\Attributes\MoonSharpVisibleAttribute.cs" />
+    <Compile Include="MoonSharp\Interop\BasicDescriptors\DispatchingUserDataDescriptor.cs" />
+    <Compile Include="MoonSharp\Interop\BasicDescriptors\IMemberDescriptor.cs" />
+    <Compile Include="MoonSharp\Interop\BasicDescriptors\IOptimizableDescriptor.cs" />
+    <Compile Include="MoonSharp\Interop\BasicDescriptors\IOverloadableMemberDescriptor.cs" />
+    <Compile Include="MoonSharp\Interop\BasicDescriptors\MemberDescriptorAccess.cs" />
+    <Compile Include="MoonSharp\Interop\BasicDescriptors\ParameterDescriptor.cs" />
+    <Compile Include="MoonSharp\Interop\Converters\ClrToScriptConversions.cs" />
+    <Compile Include="MoonSharp\Interop\Converters\NumericConversions.cs" />
+    <Compile Include="MoonSharp\Interop\Converters\ScriptToClrConversions.cs" />
+    <Compile Include="MoonSharp\Interop\Converters\StringConversions.cs" />
+    <Compile Include="MoonSharp\Interop\Converters\TableConversions.cs" />
+    <Compile Include="MoonSharp\Interop\CustomConvertersCollection.cs" />
+    <Compile Include="MoonSharp\Interop\DescriptorHelpers.cs" />
+    <Compile Include="MoonSharp\Interop\IGeneratorUserDataDescriptor.cs" />
+    <Compile Include="MoonSharp\Interop\InteropAccessMode.cs" />
+    <Compile Include="MoonSharp\Interop\InteropRegistrationPolicy.cs" />
+    <Compile Include="MoonSharp\Interop\IUserDataDescriptor.cs" />
+    <Compile Include="MoonSharp\Interop\IUserDataMemberDescriptor.cs" />
+    <Compile Include="MoonSharp\Interop\IUserDataType.cs" />
+    <Compile Include="MoonSharp\Interop\IWireableDescriptor.cs" />
+    <Compile Include="MoonSharp\Interop\LuaStateInterop\CharPtr.cs" />
+    <Compile Include="MoonSharp\Interop\LuaStateInterop\LuaBase.cs" />
+    <Compile Include="MoonSharp\Interop\LuaStateInterop\LuaBase_CLib.cs" />
+    <Compile Include="MoonSharp\Interop\LuaStateInterop\LuaLBuffer.cs" />
+    <Compile Include="MoonSharp\Interop\LuaStateInterop\LuaState.cs" />
+    <Compile Include="MoonSharp\Interop\LuaStateInterop\Tools.cs" />
+    <Compile Include="MoonSharp\Interop\PredefinedUserData\AnonWrapper.cs" />
+    <Compile Include="MoonSharp\Interop\PredefinedUserData\EnumerableWrapper.cs" />
+    <Compile Include="MoonSharp\Interop\PropertyTableAssigner.cs" />
+    <Compile Include="MoonSharp\Interop\ProxyObjects\DelegateProxyFactory.cs" />
+    <Compile Include="MoonSharp\Interop\ProxyObjects\IProxyFactory.cs" />
+    <Compile Include="MoonSharp\Interop\ReflectionSpecialNames.cs" />
+    <Compile Include="MoonSharp\Interop\RegistrationPolicies\AutomaticRegistrationPolicy.cs" />
+    <Compile Include="MoonSharp\Interop\RegistrationPolicies\DefaultRegistrationPolicy.cs" />
+    <Compile Include="MoonSharp\Interop\RegistrationPolicies\IRegistrationPolicy.cs" />
+    <Compile Include="MoonSharp\Interop\RegistrationPolicies\PermanentRegistrationPolicy.cs" />
+    <Compile Include="MoonSharp\Interop\StandardDescriptors\AutoDescribingUserDataDescriptor.cs" />
+    <Compile Include="MoonSharp\Interop\StandardDescriptors\CompositeUserDataDescriptor.cs" />
+    <Compile Include="MoonSharp\Interop\StandardDescriptors\EventFacade.cs" />
+    <Compile Include="MoonSharp\Interop\StandardDescriptors\HardwiredDescriptors\DefaultValue.cs" />
+    <Compile Include="MoonSharp\Interop\StandardDescriptors\HardwiredDescriptors\HardwiredMemberDescriptor.cs" />
+    <Compile Include="MoonSharp\Interop\StandardDescriptors\HardwiredDescriptors\HardwiredMethodMemberDescriptor.cs" />
+    <Compile Include="MoonSharp\Interop\StandardDescriptors\HardwiredDescriptors\HardwiredUserDataDescriptor.cs" />
+    <Compile Include="MoonSharp\Interop\StandardDescriptors\MemberDescriptors\ArrayMemberDescriptor.cs" />
+    <Compile Include="MoonSharp\Interop\StandardDescriptors\MemberDescriptors\DynValueMemberDescriptor.cs" />
+    <Compile Include="MoonSharp\Interop\StandardDescriptors\MemberDescriptors\FunctionMemberDescriptorBase.cs" />
+    <Compile Include="MoonSharp\Interop\StandardDescriptors\MemberDescriptors\ObjectCallbackMemberDescriptor.cs" />
+    <Compile Include="MoonSharp\Interop\StandardDescriptors\ProxyUserDataDescriptor.cs" />
+    <Compile Include="MoonSharp\Interop\StandardDescriptors\ReflectionMemberDescriptors\EventMemberDescriptor.cs" />
+    <Compile Include="MoonSharp\Interop\StandardDescriptors\ReflectionMemberDescriptors\FieldMemberDescriptor.cs" />
+    <Compile Include="MoonSharp\Interop\StandardDescriptors\ReflectionMemberDescriptors\MethodMemberDescriptor.cs" />
+    <Compile Include="MoonSharp\Interop\StandardDescriptors\ReflectionMemberDescriptors\OverloadedMethodMemberDescriptor.cs" />
+    <Compile Include="MoonSharp\Interop\StandardDescriptors\ReflectionMemberDescriptors\PropertyMemberDescriptor.cs" />
+    <Compile Include="MoonSharp\Interop\StandardDescriptors\ReflectionMemberDescriptors\ValueTypeDefaultCtorMemberDescriptor.cs" />
+    <Compile Include="MoonSharp\Interop\StandardDescriptors\StandardEnumUserDataDescriptor.cs" />
+    <Compile Include="MoonSharp\Interop\StandardDescriptors\StandardGenericsUserDataDescriptor.cs" />
+    <Compile Include="MoonSharp\Interop\StandardDescriptors\StandardUserDataDescriptor.cs" />
+    <Compile Include="MoonSharp\Interop\UserDataMemberType.cs" />
+    <Compile Include="MoonSharp\Interop\UserDataRegistries\ExtensionMethodsRegistry.cs" />
+    <Compile Include="MoonSharp\Interop\UserDataRegistries\TypeDescriptorRegistry.cs" />
+    <Compile Include="MoonSharp\IO\BinDumpBinaryReader.cs" />
+    <Compile Include="MoonSharp\IO\BinDumpBinaryWriter.cs" />
+    <Compile Include="MoonSharp\IO\UndisposableStream.cs" />
+    <Compile Include="MoonSharp\LinqHelpers.cs" />
+    <Compile Include="MoonSharp\Loaders\EmbeddedResourcesScriptLoader.cs" />
+    <Compile Include="MoonSharp\Loaders\FileSystemScriptLoader.cs" />
+    <Compile Include="MoonSharp\Loaders\InvalidScriptLoader.cs" />
+    <Compile Include="MoonSharp\Loaders\IScriptLoader.cs" />
+    <Compile Include="MoonSharp\Loaders\ScriptLoaderBase.cs" />
+    <Compile Include="MoonSharp\Loaders\UnityAssetsScriptLoader.cs" />
+    <Compile Include="MoonSharp\Modules\CoreModules.cs" />
+    <Compile Include="MoonSharp\Modules\ModuleRegister.cs" />
+    <Compile Include="MoonSharp\Modules\MoonSharpModuleAttribute.cs" />
+    <Compile Include="MoonSharp\Modules\MoonSharpModuleConstantAttribute.cs" />
+    <Compile Include="MoonSharp\Modules\MoonSharpModuleMethodAttribute.cs" />
+    <Compile Include="MoonSharp\NameSpace_XmlHelp.cs" />
+    <Compile Include="MoonSharp\Options\ColonOperatorBehaviour.cs" />
+    <Compile Include="MoonSharp\Platforms\DotNetCorePlatformAccessor.cs" />
+    <Compile Include="MoonSharp\Platforms\IPlatformAccessor.cs" />
+    <Compile Include="MoonSharp\Platforms\LimitedPlatformAccessor.cs" />
+    <Compile Include="MoonSharp\Platforms\PlatformAccessorBase.cs" />
+    <Compile Include="MoonSharp\Platforms\PlatformAutoDetector.cs" />
+    <Compile Include="MoonSharp\Platforms\StandardFileType.cs" />
+    <Compile Include="MoonSharp\Platforms\StandardPlatformAccessor.cs" />
+    <Compile Include="MoonSharp\REPL\ReplHistoryNavigator.cs" />
+    <Compile Include="MoonSharp\REPL\ReplInterpreter.cs" />
+    <Compile Include="MoonSharp\REPL\ReplInterpreterScriptLoader.cs" />
+    <Compile Include="MoonSharp\Script.cs" />
+    <Compile Include="MoonSharp\ScriptGlobalOptions.cs" />
+    <Compile Include="MoonSharp\ScriptOptions.cs" />
+    <Compile Include="MoonSharp\Serialization\Json\JsonNull.cs" />
+    <Compile Include="MoonSharp\Serialization\Json\JsonTableConverter.cs" />
+    <Compile Include="MoonSharp\Serialization\ObjectValueConverter.cs" />
+    <Compile Include="MoonSharp\Serialization\SerializationExtensions.cs" />
+    <Compile Include="MoonSharp\Tree\Expressions\AdjustmentExpression.cs" />
+    <Compile Include="MoonSharp\Tree\Expressions\BinaryOperatorExpression.cs" />
+    <Compile Include="MoonSharp\Tree\Expressions\DynamicExprExpression.cs" />
+    <Compile Include="MoonSharp\Tree\Expressions\ExprListExpression.cs" />
+    <Compile Include="MoonSharp\Tree\Expressions\FunctionCallExpression.cs" />
+    <Compile Include="MoonSharp\Tree\Expressions\FunctionDefinitionExpression.cs" />
+    <Compile Include="MoonSharp\Tree\Expressions\IndexExpression.cs" />
+    <Compile Include="MoonSharp\Tree\Expressions\LiteralExpression.cs" />
+    <Compile Include="MoonSharp\Tree\Expressions\SymbolRefExpression.cs" />
+    <Compile Include="MoonSharp\Tree\Expressions\TableConstructor.cs" />
+    <Compile Include="MoonSharp\Tree\Expressions\UnaryOperatorExpression.cs" />
+    <Compile Include="MoonSharp\Tree\Expression_.cs" />
+    <Compile Include="MoonSharp\Tree\Fast_Interface\Loader_Fast.cs" />
+    <Compile Include="MoonSharp\Tree\IVariable.cs" />
+    <Compile Include="MoonSharp\Tree\Lexer\Lexer.cs" />
+    <Compile Include="MoonSharp\Tree\Lexer\LexerUtils.cs" />
+    <Compile Include="MoonSharp\Tree\Lexer\Token.cs" />
+    <Compile Include="MoonSharp\Tree\Lexer\TokenType.cs" />
+    <Compile Include="MoonSharp\Tree\Loop.cs" />
+    <Compile Include="MoonSharp\Tree\NodeBase.cs" />
+    <Compile Include="MoonSharp\Tree\Statement.cs" />
+    <Compile Include="MoonSharp\Tree\Statements\AssignmentStatement.cs" />
+    <Compile Include="MoonSharp\Tree\Statements\BreakStatement.cs" />
+    <Compile Include="MoonSharp\Tree\Statements\ChunkStatement.cs" />
+    <Compile Include="MoonSharp\Tree\Statements\CompositeStatement.cs" />
+    <Compile Include="MoonSharp\Tree\Statements\EmptyStatement.cs" />
+    <Compile Include="MoonSharp\Tree\Statements\ForEachLoopStatement.cs" />
+    <Compile Include="MoonSharp\Tree\Statements\ForLoopStatement.cs" />
+    <Compile Include="MoonSharp\Tree\Statements\FunctionCallStatement.cs" />
+    <Compile Include="MoonSharp\Tree\Statements\FunctionDefinitionStatement.cs" />
+    <Compile Include="MoonSharp\Tree\Statements\GotoStatement.cs" />
+    <Compile Include="MoonSharp\Tree\Statements\IfStatement.cs" />
+    <Compile Include="MoonSharp\Tree\Statements\LabelStatement.cs" />
+    <Compile Include="MoonSharp\Tree\Statements\RepeatStatement.cs" />
+    <Compile Include="MoonSharp\Tree\Statements\ReturnStatement.cs" />
+    <Compile Include="MoonSharp\Tree\Statements\ScopeBlockStatement.cs" />
+    <Compile Include="MoonSharp\Tree\Statements\WhileStatement.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
