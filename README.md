@@ -22,14 +22,8 @@ Download the .dll and place it inside of your plugins folder.
 
 - Add Auto complete
 ## Documentation
-A script *NEEDS* `_main` and `_loop` to run. `_main` is basically a wrapper for the Unity `Start` method and `_loop` is basically a wrapper for unity `Update` method.
+If you ever need to have an infinite loop, *DON'T* use for loops or while loops, that will just freeze / crash Gorilla Tag. Please use the provided `_loop` method. It runs on every frame on the game.
 ```C#
-function _main()
-    print("Hello, I run in the first frame of the script!")
-
-    return _main()
-end
-
 function _loop()
     print("Hello, I run every frame of the script!")
 
