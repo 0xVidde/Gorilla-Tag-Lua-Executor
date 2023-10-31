@@ -2,6 +2,8 @@
 # Ormbunke
 Ormbunke is a LUA interface inside of Gorilla Tag. It supports a lot of things, will add even more. If you've ever cheated in roblox then you know what an executor is. It's basically a program that runs a script that changes things in the game at runtime so you don't have to close the game inorder to switch or remove mods.
 
+## Why?
+This makes it extremely easy to load mods ar runtime. Why have to reopen the game when you want to change / add mods when you can just cope paste a script and click a button?
 
 ## Authors
 
