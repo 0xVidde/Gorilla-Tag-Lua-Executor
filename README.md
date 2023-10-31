@@ -22,8 +22,22 @@ Download the .dll and place it inside of your plugins folder.
 
 - Add Auto complete
 ## Documentation
+A script *NEEDS* `_main` and `_loop` to run. `_main` is basically a wrapper for the Unity `Start` method and `_loop` is basically a wrapper for unity `Update` method.
+```C#
+function _main()
+    print("Hello, I run in the first frame of the script!")
 
+    return _main()
+end
 
+function _loop()
+    print("Hello, I run every frame of the script!")
+
+    return _loop()
+end
+```
+
+Actual documentation:
 ```C#
 GmaeObject:Find(string) => GameObject.Find Wrapper
 GameObject:CreatePrimitive(PrimitiveType) => GameObject.CreatePrimitive Wrapper
