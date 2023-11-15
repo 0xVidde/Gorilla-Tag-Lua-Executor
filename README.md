@@ -16,12 +16,12 @@ Download the .dll and place it inside of your plugins folder.
 
 - Make menu look better.
 
-- Add error logging to make it easier for further use.
+- Make a real documentation page for the custom lua engine.
 
 - Add Syntax highlighting
 
 - Add Auto complete
-## Documentation
+## Documentation  --> (PLEASE CHECK /Examples/) <--
 If you ever need to have an infinite loop, *DON'T* use for loops or while loops, that will just freeze / crash Gorilla Tag. Please use the provided `_loop` method. It runs on every frame on the game.
 ```C#
 function _loop()
@@ -51,7 +51,7 @@ _GorillaComputer         => GorillaParent.instance
 _BetterDayNightManager   => BetterDayNightManager.instance
 _GorillaParent           => GorillaParent.instance
 _PhotonNetworkController => PhotonNetworkController.Instance
-
+InputManager             => Custom Input Manager
 ```
 Supports Following Unity Classes / Namespaces / Enums / Structs
 ```C#
@@ -67,6 +67,8 @@ MeshRenderer
 SkinnedMeshRenderer
 Shader
 Material
+
+Time
 
 GorillaLocomotion.Player
 VRRig
@@ -88,6 +90,9 @@ Vector2
 Vector3
 Vector4
 Quaternion
+
+GUI
+Rect
 ```
 ## Acknowledgements
  - [LUA Lexer](https://www.moonsharp.org/)
