@@ -51,7 +51,7 @@ GameObject:Destroy(tempObj, 1)";
         public void Start()
         {
             Lua.LuaInterface.InitLua();
-        } 
+        }
 
         public void OnGUI()
         {
@@ -71,7 +71,7 @@ GameObject:Destroy(tempObj, 1)";
                 Debug.Log("Ran Code!");
             }
 
-            GUI.DragWindow(new Rect(0, 0, 10000, 20)); 
+            GUI.DragWindow(new Rect(0, 0, 10000, 20));
         }
     }
 }
