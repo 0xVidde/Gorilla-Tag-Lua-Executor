@@ -12,13 +12,12 @@ namespace Gorilla_Tag_Lua_Executor.Lua
 {
     public static class LuaInterface
     {
-        public static Script mainScript;
+        public static List<Script> loadedScripts = new List<Script>();
+        public static List<DynValue> loopCoroutines = new List<DynValue>();
 
-        public static void InitLua()
+        public static void InitLuaEngine()
         {
             Debug.Log("Initiating LUA Engine...");
-
-            mainScript = new Script();
 
             #region Register Types
 
@@ -71,66 +70,89 @@ namespace Gorilla_Tag_Lua_Executor.Lua
 
             #endregion
 
-            #region Globals
-
-            // Classes
-            mainScript.Globals["GameObject"] = UserData.CreateStatic<LUA_GameObjectWrapper>();
-            mainScript.Globals["InputManager"] = UserData.CreateStatic<LUA_InputManager>();
-            mainScript.Globals["Vector2"] =    UserData.CreateStatic<LUA_Vector2Wrapper>();
-            mainScript.Globals["Vector3"] =    UserData.CreateStatic<LUA_Vector3Wrapper>();
-            mainScript.Globals["Vector4"] =    UserData.CreateStatic<LUA_Vector4Wrapper>();
-            mainScript.Globals["Quaternion"] = UserData.CreateStatic<LUA_QuaternionWrapper>();
-
-            mainScript.Globals["InputManager"] = UserData.CreateStatic<LUA_InputManager>();
-
-            // Enums
-            mainScript.Globals["PrimitiveType"] = UserData.CreateStatic<PrimitiveType>();
-
-            // Methods
-            mainScript.Globals["print"] = (Func<object, bool>)CustomLua.LUA_print;
-            mainScript.Globals["printerr"] = (Func<object, bool>)CustomLua.LUA_printerr;
-            mainScript.Globals["loadstring"] = (Func<string, bool>)CustomLua.LUA_loadstring;
-
-            // Structs
-            mainScript.Globals["Mathf"] = new Mathf();
-
-            // Constant game instances
-            mainScript.Globals["_GorillaBattleManager"] = GorillaBattleManager.instance;
-            mainScript.Globals["_PhotonNetworkController"] = PhotonNetworkController.Instance;
-            mainScript.Globals["_GorillaPlayer"] = GorillaLocomotion.Player.Instance;
-            mainScript.Globals["_GorillaDayNight"] = GorillaDayNight.instance;
-            mainScript.Globals["_GorillaComputer"] = GorillaComputer.instance;
-            mainScript.Globals["_GorillaParent"] = GorillaParent.instance;
-            mainScript.Globals["_BetterDayNightManager"] = BetterDayNightManager.instance;
-
-            #endregion
-
             foreach (Type item in UserData.GetRegisteredTypes())
             {
                 Debug.Log("Loaded Type Into LUA Engine: " + item.Name);
             }
-            foreach (DynValue item in mainScript.Globals.Keys)
+        }
+
+        public static void InitScript(Script script)
+        {
+            #region Globals
+
+            // Classes
+            script.Globals["GameObject"] = UserData.CreateStatic<LUA_GameObjectWrapper>();
+            script.Globals["InputManager"] = UserData.CreateStatic<LUA_InputManager>();
+            script.Globals["Vector2"] = UserData.CreateStatic<LUA_Vector2Wrapper>();
+            script.Globals["Vector3"] = UserData.CreateStatic<LUA_Vector3Wrapper>();
+            script.Globals["Vector4"] = UserData.CreateStatic<LUA_Vector4Wrapper>();
+            script.Globals["Quaternion"] = UserData.CreateStatic<LUA_QuaternionWrapper>();
+
+            script.Globals["InputManager"] = UserData.CreateStatic<LUA_InputManager>();
+
+            // Enums
+            script.Globals["PrimitiveType"] = UserData.CreateStatic<PrimitiveType>();
+
+            // Methods
+            script.Globals["print"] = (Func<object, bool>)CustomLua.LUA_print;
+            script.Globals["printerr"] = (Func<object, bool>)CustomLua.LUA_printerr;
+            script.Globals["loadstring"] = (Func<string, bool>)CustomLua.LUA_loadstring;
+
+            // Structs
+            script.Globals["Mathf"] = new Mathf();
+
+            // Constant game instances
+            script.Globals["_GorillaBattleManager"] = GorillaBattleManager.instance;
+            script.Globals["_PhotonNetworkController"] = PhotonNetworkController.Instance;
+            script.Globals["_GorillaPlayer"] = GorillaLocomotion.Player.Instance;
+            script.Globals["_GorillaDayNight"] = GorillaDayNight.instance;
+            script.Globals["_GorillaComputer"] = GorillaComputer.instance;
+            script.Globals["_GorillaParent"] = GorillaParent.instance;
+            script.Globals["_BetterDayNightManager"] = BetterDayNightManager.instance;
+
+            #endregion
+
+            foreach (DynValue item in script.Globals.Keys)
             {
                 Debug.Log("Loaded Global Into LUA Engine: " + item.ToString());
             }
         }
 
-        public static bool RunCode(string code)
+        public static void RunCode(string code)
         {
+            Script newScript = new Script();
+            InitScript(newScript);
+
             try
             {
-                DynValue res = mainScript.DoString(code);
+                try
+                {
+                    DynValue loopCourrutine = null;
 
-                mainScript.Options.UseLuaErrorLocations = true;
+                    DynValue status = newScript.DoString(code);
 
-                return res.Boolean;
+                    if (code.Contains("function _loop()"))
+                        loopCourrutine = newScript.Globals.Get("_loop");
+
+                    if (loopCourrutine != null && loopCourrutine.Type == DataType.Function)
+                    {
+                        loopCourrutine = newScript.CreateCoroutine(loopCourrutine);
+                        loopCourrutine.Coroutine.AutoYieldCounter = 100;
+
+                        loopCoroutines.Add(loopCourrutine);
+                    }
+                }
+                catch (ScriptRuntimeException ex)
+                {
+                    Debug.LogError("ScriptRuntimeException => " + ex.DecoratedMessage);
+                }
             }
-            catch (ScriptRuntimeException ex)
+            catch (SyntaxErrorException ex)
             {
-                Debug.LogError("SCRIPT ERROR => " + ex.DecoratedMessage);
+                Debug.LogError("SyntaxErrorException => " + ex.DecoratedMessage);
             }
 
-            return false;
+            loadedScripts.Add(newScript);
         }
     }
 }
