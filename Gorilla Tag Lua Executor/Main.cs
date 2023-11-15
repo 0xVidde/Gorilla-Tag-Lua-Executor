@@ -32,7 +32,7 @@ namespace Gorilla_Tag_Lua_Executor
     {
         private const string modGUID = "GT.Lua.Exec";
         private const string modName = "Ormbunke Executor";
-        private const string modVersion = "0.0.2";
+        private const string modVersion = "0.0.3";
 
         public void Awake()
         {
@@ -57,7 +57,7 @@ namespace Gorilla_Tag_Lua_Executor
 
     public class MainMod : MonoBehaviour
     {
-        private Rect executorWindowRect = new Rect(20, 20, 500, 450);
+        public Rect executorWindowRect = new Rect(20, 20, 500, 473);
 
         private GUIStyle textAreaStyle = new GUIStyle();
         private GUIStyle windowStyle = new GUIStyle();
@@ -81,6 +81,10 @@ namespace Gorilla_Tag_Lua_Executor
 
             this.buttonStyle.normal.background = MakeTexture(2, 2, new Color(0.1f, 0.1f, 0.1f, 1f));
             this.buttonStyle.normal.textColor = Color.white;
+            this.buttonStyle.hover.background = MakeTexture(2, 2, new Color(0.12f, 0.12f, 0.12f, 1f));
+            this.buttonStyle.normal.textColor = Color.white;
+            this.buttonStyle.active.background = MakeTexture(2, 2, new Color(0.08f, 0.08f, 0.08f, 1f));
+            this.buttonStyle.active.textColor = Color.white;
             this.buttonStyle.alignment = TextAnchor.MiddleCenter;
             this.buttonStyle.clipping = TextClipping.Clip;
             this.buttonStyle.border = new RectOffset(8, 8, 8, 8);
@@ -153,6 +157,14 @@ namespace Gorilla_Tag_Lua_Executor
                 LuaInterface.RunCode(code);
 
                 Debug.Log("Ormbunke => Ran Code!");
+            }
+
+            if (GUI.Button(new Rect(5, 449, 490, 20), "Clear Loaded Scripts", buttonStyle))
+            {
+                LuaInterface.loadedScripts.Clear();
+                LuaInterface.loopCoroutines.Clear();
+
+                Debug.Log("Ormbunke => Cleared Scripts!");
             }
 
             foreach (DynValue coroutine in LuaInterface.loopCoroutines)

@@ -629,6 +629,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Examples\Boilerplate.lua" />
+    <None Include="Examples\FPS.lua" />
+    <None Include="Examples\Globals.lua" />
+    <None Include="Examples\Input.lua" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

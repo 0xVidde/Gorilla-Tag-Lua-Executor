@@ -7,6 +7,8 @@ using static Gorilla_Tag_Lua_Executor.Lua.CustomLua;
 using GorillaNetworking;
 using Photon.Pun;
 using UnityEngine.InputSystem;
+using System.Security.Cryptography;
+using System.Xml.Linq;
 
 namespace Gorilla_Tag_Lua_Executor.Lua
 {
@@ -34,6 +36,10 @@ namespace Gorilla_Tag_Lua_Executor.Lua
             UserData.RegisterType<Shader>();
             UserData.RegisterType<Material>();
             UserData.RegisterType<SkinnedMeshRenderer>();
+
+            UserData.RegisterType<GUI>();
+
+            UserData.RegisterType<Time>();
             
             UserData.RegisterType<GorillaLocomotion.Player>();
             UserData.RegisterType<VRRig>();
@@ -56,7 +62,11 @@ namespace Gorilla_Tag_Lua_Executor.Lua
 
             UserData.RegisterType<LUA_ControllerInput>();
             UserData.RegisterType<LUA_InputManager>();
+            UserData.RegisterType<LUA_KeyboardWrapper>();
             UserData.RegisterType<LUA_MouseWrapper>();
+
+            UserData.RegisterType<LUA_GUIWrapper>();
+            UserData.RegisterType<LUA_RectWrapper>();
 
             // Structs
             UserData.RegisterType<Mathf>();
@@ -64,6 +74,7 @@ namespace Gorilla_Tag_Lua_Executor.Lua
             UserData.RegisterType<Vector3>();
             UserData.RegisterType<Vector4>();
             UserData.RegisterType<Quaternion>();
+            UserData.RegisterType<Rect>();
 
             // Enums
             UserData.RegisterType<PrimitiveType>();
@@ -83,15 +94,12 @@ namespace Gorilla_Tag_Lua_Executor.Lua
             // Classes
             script.Globals["GameObject"] = UserData.CreateStatic<LUA_GameObjectWrapper>();
             script.Globals["InputManager"] = UserData.CreateStatic<LUA_InputManager>();
-            script.Globals["Vector2"] = UserData.CreateStatic<LUA_Vector2Wrapper>();
-            script.Globals["Vector3"] = UserData.CreateStatic<LUA_Vector3Wrapper>();
-            script.Globals["Vector4"] = UserData.CreateStatic<LUA_Vector4Wrapper>();
-            script.Globals["Quaternion"] = UserData.CreateStatic<LUA_QuaternionWrapper>();
-
-            script.Globals["InputManager"] = UserData.CreateStatic<LUA_InputManager>();
+            script.Globals["GUI"] = UserData.CreateStatic<LUA_GUIWrapper>();
+            script.Globals["Time"] = UserData.CreateStatic<Time>();
 
             // Enums
             script.Globals["PrimitiveType"] = UserData.CreateStatic<PrimitiveType>();
+
 
             // Methods
             script.Globals["print"] = (Func<object, bool>)CustomLua.LUA_print;
@@ -100,6 +108,12 @@ namespace Gorilla_Tag_Lua_Executor.Lua
 
             // Structs
             script.Globals["Mathf"] = new Mathf();
+            script.Globals["Vector2"] = UserData.CreateStatic<LUA_Vector2Wrapper>();
+            script.Globals["Vector3"] = UserData.CreateStatic<LUA_Vector3Wrapper>();
+            script.Globals["Vector4"] = UserData.CreateStatic<LUA_Vector4Wrapper>();
+            script.Globals["Quaternion"] = UserData.CreateStatic<LUA_QuaternionWrapper>();
+
+            script.Globals["Rect"] = UserData.CreateStatic<LUA_RectWrapper>();
 
             // Constant game instances
             script.Globals["_GorillaBattleManager"] = GorillaBattleManager.instance;
@@ -110,12 +124,10 @@ namespace Gorilla_Tag_Lua_Executor.Lua
             script.Globals["_GorillaParent"] = GorillaParent.instance;
             script.Globals["_BetterDayNightManager"] = BetterDayNightManager.instance;
 
-            #endregion
+            // Glboals
+            script.Globals["_G.Author"] = new string('.', 0);
 
-            foreach (DynValue item in script.Globals.Keys)
-            {
-                Debug.Log("Loaded Global Into LUA Engine: " + item.ToString());
-            }
+            #endregion
         }
 
         public static void RunCode(string code)

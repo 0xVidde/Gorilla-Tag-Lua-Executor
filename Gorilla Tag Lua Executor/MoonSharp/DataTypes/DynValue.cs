@@ -16,10 +16,10 @@ namespace MoonSharp.Interpreter
 		private int m_RefID = ++s_RefIDCounter;
 		private int m_HashCode = -1;
 
-		private bool m_ReadOnly;
-		private double m_Number;
-		private object m_Object;
-		private DataType m_Type;
+        public bool m_ReadOnly;
+        public double m_Number;
+        public object m_Object;
+		public DataType m_Type;
 
 
 		/// <summary>

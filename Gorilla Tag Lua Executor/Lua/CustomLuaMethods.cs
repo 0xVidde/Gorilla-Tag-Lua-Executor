@@ -1,6 +1,8 @@
 ﻿using MoonSharp.Interpreter;
 using System.Collections.Generic;
 using System.Net;
+using System.Reflection.Emit;
+using System.Runtime.InteropServices;
 using System.Runtime.Remoting.Messaging;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -10,6 +12,14 @@ namespace Gorilla_Tag_Lua_Executor.Lua
 {
     public static class CustomLua
     {
+        [DllImport("user32.dll")]
+        public static extern short GetAsyncKeyState(int vKey);
+
+        static bool IsKeyPressed(int keyCode)
+        {
+            return (GetAsyncKeyState(keyCode) & 0x8001) != 0;
+        }
+
         public class LUA_MouseWrapper
         {
             public bool leftButtonPressed => Mouse.current.leftButton.isPressed;
@@ -50,6 +60,7 @@ namespace Gorilla_Tag_Lua_Executor.Lua
             public bool backspaceKey => Keyboard.current.backspaceKey.IsPressed();
             public bool endKey => Keyboard.current.endKey.IsPressed();
             public bool homeKey => Keyboard.current.homeKey.IsPressed();
+            public bool deleteKey => Keyboard.current.deleteKey.IsPressed();
 
             public bool digit0Key => Keyboard.current.digit0Key.IsPressed();
             public bool digit1Key => Keyboard.current.digit1Key.IsPressed();
@@ -121,8 +132,8 @@ namespace Gorilla_Tag_Lua_Executor.Lua
                     return input;
                 }
 
+                public static LUA_KeyboardWrapper GetKeyboard() => new LUA_KeyboardWrapper();
                 public static LUA_MouseWrapper GetMouse() => new LUA_MouseWrapper();
-                public static LUA_KeyboardWrapper GetKeyBoard() => new LUA_KeyboardWrapper();
             }
 
             public class LUA_GameObjectWrapper
@@ -270,6 +281,23 @@ namespace Gorilla_Tag_Lua_Executor.Lua
                 public static Quaternion New() => new Quaternion();
                 public static Quaternion New(float x, float y, float z, float w) => new Quaternion(x, y, z, w);
             }
+
+            
+            public class LUA_RectWrapper
+        {
+            public static Rect New() => new Rect();
+            public static Rect New(float x, float y, float width, float height) => new Rect(x, y, width, height);
+        }
+
+        public class LUA_GUIWrapper
+        {
+            public static void Label(Rect position, string text) => GUI.Label(position, text);
+            public static void Label(Rect position, Texture image) => GUI.Label(position, image);
+            public static void Label(Rect position, GUIContent content) => GUI.Label(position, content);
+            public static void Label(Rect position, string text, GUIStyle style) => GUI.Label(position, text, style);
+            public static void Label(Rect position, Texture image, GUIStyle style) => GUI.Label(position, image, style);
+            public static void Label(Rect position, GUIContent content, GUIStyle style) => GUI.Label(position, content, style);
+        }
 
             public static bool LUA_print(object msg)
             {
