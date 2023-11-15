@@ -51,7 +51,7 @@ _GorillaComputer         => GorillaParent.instance
 _BetterDayNightManager   => BetterDayNightManager.instance
 _GorillaParent           => GorillaParent.instance
 _PhotonNetworkController => PhotonNetworkController.Instance
-_InputManager            => Custom Input Manager
+InputManager             => Custom Input Manager
 ```
 Supports Following Unity Classes / Namespaces / Enums / Structs
 ```C#
